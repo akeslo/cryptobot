@@ -6,7 +6,7 @@ var Discord = require('discord.js'),
     fs = require('fs');
 
 //declare some variables that help the bot function
-var bot_token = process.env.BOT_TOKEN || 'MzM0NTM3Mzk0MTY0NDY1Njc1.DEwW_g.XURQs1izMN4JdZlBpNL_hjWE9vw',
+var bot_token = process.env.BOT_TOKEN || 'MzgwNDYzMzc4MTA5NDMxODA4.DO6HIA.HFYXhO0ngqBpOt5XLCfjKoggC6Q',
     bot_name,
     bot_id;
 
@@ -146,12 +146,12 @@ bot.on('ready', () => {
 
   //////////// AUTOMATIC INTERACTION ///////////////
 
- 
-  bot.on(RTM_EVENTS.TEAM_JOIN, function(user){
+
+  bot.on('guildMemberAdd', function(user){
     user.send("Welcome to the team! My name is " + bot_name + " and I'm here to keep you updated on cryptocurrency prices. Allow me to send you a list of my commands.", user.id);
     displayHelp(user.id);
   });
-  
+
 
   var botConfig = require(config);
 
