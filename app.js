@@ -234,7 +234,7 @@ bot.on('ready', () => {
   }
 
   //////////// MANUAL INTERACTION ///////////////
-  bot.on('message', function(payload){
+  bot.on('message', message => {
     var noUnderstand = "I'm sorry, I didn't understand what you asked. Type *!cryptobot help* to see a detail of my commands.";
 
     var message = payload.content,
@@ -354,7 +354,7 @@ bot.on('ready', () => {
       } else {
         payload.reply(noUnderstand);
       }
-    }
+    })
 
     function parseCoins(message) {
       return new Promise(function(resolve, reject){
