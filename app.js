@@ -40,6 +40,7 @@ function getTickerData() {
   let cmcGET = new Promise(function(resolve, reject) {
     var request = http.request(tickerDataOptions, function(response) {
       var chunks = [];
+          console.log(response.on);
       response.on("data", function(chunk) {
         chunks.push(chunk);
       });
@@ -59,7 +60,6 @@ function getTickerData() {
   });
 
   cmcGET.then(function(data){
-    console.log(data);
     if (data && data != 'undefined') {
       tickerData = data;
       tickerData = JSON.parse(tickerData);
