@@ -484,3 +484,4 @@ bot.on('ready', () => {
 
 //log the bot into the server
 bot.login(bot_token);
+module.exports = bot;

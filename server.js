@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3030;
 
+const bot = require('./app');
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res){
