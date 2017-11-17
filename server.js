@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res){
   res.status(200).send('CryptoBot listening service online. Bleep bloop.')
-  bot();
 });
 
 app.listen(port, function(){
