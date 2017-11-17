@@ -37,12 +37,12 @@ getTickerData();
 var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
 
 function getTickerData() {
-  console.log("made it to ticket data");
   let cmcGET = new Promise(function(resolve, reject) {
     var request = http.request(tickerDataOptions, function(response) {
       var chunks = [];
 
       response.on("data", function(chunk) {
+        console.log(chunk);
         chunks.push(chunk);
       });
 
