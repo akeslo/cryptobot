@@ -245,10 +245,15 @@ bot.on('ready', () => {
        console.log("parsed message");
        if (message.includes("show price")) {
          console.log("found show price");
-
+         //parse text for all coin references
+         parseCoins(message).then(function(parsedCoins){
+           ((parsedCoins.length > 0) ? update(parsedCoins, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
+         }).catch(function(err){
+           payload.reply(err);
+         });
        }
      }
-  }
+  });
 
 
 
