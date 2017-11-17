@@ -256,7 +256,7 @@ bot.on('ready', () => {
         if (message.includes("interest")) {
           addInterest(message, channel);
         } else {
-          payload.reply('1',noUnderstand);
+          payload.reply('1' + noUnderstand);
         }
       //READ
     } else if (message.includes("display") || message.includes("show") || message.includes("what") || message.includes("is") || message.includes("are")) {
@@ -281,7 +281,7 @@ bot.on('ready', () => {
           } else if (message.includes("enabled")) {
             ((automaticUpdatesEnabled) ? payload.reply("Automatic updates are indeed enabled! You'll be updated every " + (updateInterval / 60 / 60) + " hours." ) : payload.reply("It seems as though automatic updates are disabled." ));
           } else {
-            payload.reply('2',noUnderstand);
+            payload.reply('2' + noUnderstand);
           }
         } else if (message.includes("alerts")) {
           if (message.includes("threshold") || message.includes("amount")) {
@@ -291,10 +291,10 @@ bot.on('ready', () => {
           } else if (message.includes("enabled")) {
             ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease in over one hour." ) : payload.reply("It seems as though automatic updates are disabled." ));
           } else {
-            payload.reply('3',noUnderstand);
+            payload.reply('3' + noUnderstand);
           }
         } else {
-          payload.reply('4',noUnderstand);
+          payload.reply('4' + noUnderstand);
         }
       //UPDATE
       } else if (message.includes("update") || message.includes("set")) {
@@ -315,7 +315,7 @@ bot.on('ready', () => {
               payload.reply(err);
             });
           } else {
-            payload.reply('5',noUnderstand);
+            payload.reply('5' + noUnderstand);
           }
         } else if (message.includes("update")) {
           if (automaticUpdatesEnabled === false) {
@@ -334,10 +334,10 @@ bot.on('ready', () => {
               payload.reply(err);
             });
           } else {
-            payload.reply('6',noUnderstand);
+            payload.reply('6' + noUnderstand);
           }
         } else {
-          payload.reply('7',noUnderstand);
+          payload.reply('7' + noUnderstand);
         }
       //DELETE
       } else if (message.includes("remove") || message.includes("delete")) {
@@ -352,7 +352,7 @@ bot.on('ready', () => {
       } else if (message.includes("hello") || message.includes("greetings") || message.includes("yo")){
         payload.reply(sayGreeting());
       } else {
-        payload.reply('8',noUnderstand);
+        payload.reply('8' + noUnderstand);
       }
     }
 
