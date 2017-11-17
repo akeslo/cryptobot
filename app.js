@@ -433,6 +433,7 @@ bot.on('ready', () => {
     }
 
     function addInterest(string, channel) {
+      console.log("Made it to interest list function");
       //parse text for all coin references
       parseCoins(string).then(function(parsedCoins){
         for (var coin in parsedCoins) {
