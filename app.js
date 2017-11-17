@@ -241,7 +241,7 @@ bot.on('ready', () => {
         channel = payload.channel;
 
     console.log(author);
-
+    
     //message parse to determine if it is in correct formt and not from bot
     bot.on('message', function(payload){
       var noUnderstand = "I'm sorry, I didn't understand what you asked. Type *!cryptobot help* to see a detail of my commands.";
