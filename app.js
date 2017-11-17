@@ -478,9 +478,10 @@ bot.on('ready', () => {
 
     function displayHelp() {
       return `Here is what I can do:\n
-      All commands must begin with !cryptobot \n \n
+      All commands must begin with !cryptobot \n
       Interest List: A coin watch list\n
-      Commands: interestlist show \n
+      Commands: \n
+                interestlist show \n
                 interestlist add (coin) \n
                 interestlist remove (coin) \n \n
 
