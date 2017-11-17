@@ -24,7 +24,7 @@ var tickerUpdateInterval = 30,
     tickerData = [],
     tickerDataOptions = {
       "method": "GET",
-      "hostname": "https://api.coinmarketcap.com",
+      "hostname": "api.coinmarketcap.com",
       "port": null,
       "path": "/v1/ticker/",
       "headers": {
@@ -40,7 +40,6 @@ function getTickerData() {
   let cmcGET = new Promise(function(resolve, reject) {
     var request = http.request(tickerDataOptions, function(response) {
       var chunks = [];
-      console.log(response);
       response.on("data", function(chunk) {
         chunks.push(chunk);
       });
@@ -63,6 +62,7 @@ function getTickerData() {
     if (data && data != 'undefined') {
       tickerData = data;
       tickerData = JSON.parse(tickerData);
+      console.log(data);
       return data;
     }
   }).catch(function(err){
