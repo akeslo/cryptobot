@@ -249,6 +249,9 @@ bot.on('ready', () => {
         }).catch(function(err){
           payload.reply(err);
         });
+      } else if (message.includes("help")) {
+        //display the list of functions
+        payload.reply(displayHelp());
       }
     }
 
@@ -376,7 +379,7 @@ bot.on('ready', () => {
     function displayHelp() {
       return `Here is what I can do:
 
-      All commands must begin with !cryptobot
+      All commands must begin with !cryptobot (!cryptobot help for help)
 
       Price: Display current coin price
       Commands:
