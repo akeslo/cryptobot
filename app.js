@@ -240,7 +240,8 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
-    channel.send(author);
+    console.debug(payload);
+    
     //message parse to determine if it is in correct formt and not from bot
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
       if (message.includes("show") && message.includes("price")) {
