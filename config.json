@@ -4,9 +4,9 @@
     "name": "cryptobot"
   },
   "updates": {
-    "enabled": false,
-    "interval": 21600,
-    "channel": ""
+    "enabled": true,
+    "interval": 3600,
+    "channel": "general"
   },
   "alerts": {
     "enabled": false,
