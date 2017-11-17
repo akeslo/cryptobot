@@ -2,7 +2,7 @@
 
 //import our dependencies
 var Discord = require('discord.js'),
-    http = require('http'),
+    https = require('https'),
     fs = require('fs');
 
 //declare some variables that help the bot function
