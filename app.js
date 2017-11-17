@@ -240,6 +240,8 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
+    console.log(author);
+
     //message parse to determine if it is in correct formt and not from bot
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
       if (message.includes("show price")) {
@@ -330,7 +332,6 @@ bot.on('ready', () => {
     }
 
     function addInterest(string, channel) {
-      channel.send("Made it to interest list function");
       //parse text for all coin references
       parseCoins(string).then(function(parsedCoins){
         for (var coin in parsedCoins) {
