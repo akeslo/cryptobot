@@ -477,22 +477,30 @@ bot.on('ready', () => {
     }
 
     function displayHelp() {
-      return `Here is what I can do:\n
-      All commands must begin with !cryptobot \n
-      Interest List: A coin watch list\n
-      Commands: \n
-                interestlist show \n
-                interestlist add (coin) \n
-                interestlist remove (coin) \n \n
+      return `Here is what I can do:
+      All commands must begin with !cryptobot
 
+      Interest List: A coin watch list
+      Commands:
+                interestlist show
+                interestlist add (coin)
+                interestlist remove (coin)
 
       Updates: Send periodic price updates to the channel.
-      *enable* or *disable* updates, alerts\n
-      *add* (coin) to interest list\n
-      *display/show/what/is/are* interest list, updates enabled, update interval, update channel, alerts enabled, alert threshold, alert channel, (coin) price, interest list prices\n
-      *update/set* (hours) update interval, update channel, (percent) alert threshold, alert channel\n
-      *remove/delete* (coin) from interest list\n
-      *enable* automatic updates, price alerts\n
+      Commands:
+                enable updates
+                disable updates
+                set (hours) update interval
+                set update channel
+                show update interval
+                show update channel
+
+      *enable* or *disable* updates, alerts
+      *add* (coin) to interest list
+      *display/show/what/is/are* interest list, updates enabled, update interval, update channel, alerts enabled, alert threshold, alert channel, (coin) price, interest list prices
+      *update/set* (hours) update interval, update channel, (percent) alert threshold, alert channel
+      *remove/delete* (coin) from interest list
+      *enable* automatic updates, price alerts
       *help* show this information panel`;
     }
   });
