@@ -477,6 +477,7 @@ bot.on('ready', () => {
 
     function displayHelp() {
       return `Here is what I can do:
+
       All commands must begin with !cryptobot
 
       Prices: Display current coin price
@@ -496,15 +497,19 @@ bot.on('ready', () => {
                 disable updates
                 set (hours) update interval
                 set update channel
-                show update interval
-                show update channel
+                show updates enabled
+                show updates interval
+                show updates channel
 
       Alerts: Percent based threshold alerts
       Commands:
                 enable alerts
                 disable alerts
                 set (percent) alert threshold
-                set alert channel`;
+                set alert channel
+                show alerts enabled
+                show alerts interval
+                show alerts channel`;
     }
   });
 });
