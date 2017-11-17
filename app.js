@@ -91,12 +91,11 @@ function getCoinList() {
     var coinList = [];
     for (var ticker in tickerData) {
       coinList.push(tickerData[ticker].symbol);
+      console.log(coinList);
       if ((parseInt(ticker) + 1) == tickerData.length) {
         resolve(coinList);
       }
     }
-    channel.send(coinList);
-    console.log(coinList);
   });
 }
 
