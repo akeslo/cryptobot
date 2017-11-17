@@ -38,7 +38,7 @@ getTickerData();
 
 function getTickerData() {
   let cmcGET = new Promise(function(resolve, reject) {
-    var request = http.request(tickerDataOptions, function(response) {
+    var request = https.request(tickerDataOptions, function(response) {
       var chunks = [];
       response.on("data", function(chunk) {
         chunks.push(chunk);
