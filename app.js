@@ -24,7 +24,7 @@ var tickerUpdateInterval = 30,
     tickerData = [],
     tickerDataOptions = {
       "method": "GET",
-      "hostname": "api.coinmarketcap.com",
+      "hostname": "https://api.coinmarketcap.com",
       "port": null,
       "path": "/v1/ticker/",
       "headers": {
@@ -34,7 +34,7 @@ var tickerUpdateInterval = 30,
 
 //get the data initially and continue to refresh it every 'tickerUpdateInterval' seconds
 getTickerData();
-var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
+//var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
 
 function getTickerData() {
   let cmcGET = new Promise(function(resolve, reject) {
