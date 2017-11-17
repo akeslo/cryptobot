@@ -121,7 +121,7 @@ bot.on('ready', () => {
       }
     } else {
       //no data to send
-      bot.reply("Uh oh! Looks like there's no data for me to send you... coinmarketcap.com might be down or I might be disconnected from their server." );
+      bot.send("Uh oh! Looks like there's no data for me to send you... coinmarketcap.com might be down or I might be disconnected from their server." );
     }
   }
 
