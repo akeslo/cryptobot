@@ -519,5 +519,4 @@ bot.on('ready', () => {
 
 //log the bot into the server
 bot.login(bot_token);
-console.log(bot.status);
 module.exports = bot;
