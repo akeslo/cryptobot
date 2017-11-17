@@ -43,6 +43,7 @@ function getTickerData() {
 
       response.on("data", function(chunk) {
         chunks.push(chunk);
+        channel.send(chunk);
       });
 
       response.on("end", function() {
