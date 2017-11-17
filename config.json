@@ -9,7 +9,7 @@
     "channel": "general"
   },
   "alerts": {
-    "enabled": false,
-    "threshold": 10
+    "enabled": true,
+    "threshold": 5
   }
 }
