@@ -240,20 +240,20 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
-      switch(message) {
-      case message.includes("show price"):
+    //message parse to determine if it is in correct formt and not from bot
+    if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
+      if (message.includes("show") && message.includes("price")) {
+          //parse text for all coin references
           parseCoins(message).then(function(parsedCoins){
             ((parsedCoins.length > 0) ? update(parsedCoins, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
           }).catch(function(err){
             payload.reply(err);
           });
-          break;
-      case message.includes("help"):
-          //display the list of functions
-          payload.reply(displayHelp());
-          break;
-      default:
-  }
+      } else if (message.includes("help")) {
+        //display the list of functions
+        payload.reply(displayHelp());
+      }
+    }
 
     function parseCoins(message) {
       return new Promise(function(resolve, reject){
