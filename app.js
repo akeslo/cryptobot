@@ -147,7 +147,7 @@ bot.on('ready', () => {
   //////////// AUTOMATIC INTERACTION ///////////////
 
 
-  bot.on('guild member add', function(user){
+  bot.on('guildMemberAdd', function(user){
     user.send("Welcome to the team! My name is " + bot_name + " and I'm here to keep you updated on cryptocurrency prices. Allow me to send you a list of my commands.", user.id);
     displayHelp(user.id);
   });
