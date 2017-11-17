@@ -512,8 +512,7 @@ bot.on('ready', () => {
                 set alert channel
                 show alerts enabled
                 show alerts interval
-                show alerts channel
-                `;
+                show alerts channel`;
     }
   });
 });
