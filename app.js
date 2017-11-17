@@ -240,6 +240,8 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
+    console.log(message + ' ' + author);
+
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
       //ENABLE/DISABLE
       if ((message.includes("enable") || message.includes("disable")) && ! (message.includes("are") || message.includes("is"))) {
@@ -477,40 +479,7 @@ bot.on('ready', () => {
     }
 
     function displayHelp() {
-      return `Here is what I can do:
-
-      All commands must begin with !cryptobot
-
-      Price: Display current coin price
-      Commands:
-                show price *coin*
-
-      Interest List: A coin watch list
-      Commands:
-                interestlist add *coin*
-                interestlist remove *coin*
-                interestlist show
-                interestlist show prices
-
-      Updates: Send periodic price updates to the channel.
-      Commands:
-                enable updates
-                disable updates
-                set (hours) update interval
-                set update channel
-                show updates enabled
-                show updates interval
-                show updates channel
-
-      Alerts: Percent based threshold alerts
-      Commands:
-                enable alerts
-                disable alerts
-                set (percent) alert threshold
-                set alert channel
-                show alerts enabled
-                show alerts interval
-                show alerts channel`;
+      return `You can ask me the following things:\n *enable* or *disable* updates, alerts\n *add* (coin) to interest list\n *display/show/what/is/are* interest list, updates enabled, update interval, update channel, alerts enabled, alert threshold, alert channel, (coin) price, interest list prices\n *update/set* (hours) update interval, update channel, (percent) alert threshold, alert channel\n *remove/delete* (coin) from interest list\n *enable* automatic updates, price alerts\n *help* show this information panel`;
     }
   });
 });
