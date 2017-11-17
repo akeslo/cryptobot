@@ -233,27 +233,127 @@ bot.on('ready', () => {
   }
 
   //////////// MANUAL INTERACTION ///////////////
-  bot.on('message', payload => {
+  bot.on('message', function(payload){
     var noUnderstand = "I'm sorry, I didn't understand what you asked. Type *!cryptobot help* to see a detail of my commands.";
 
     var message = payload.content,
         author = payload.author,
         channel = payload.channel;
 
-     //Parse message if its in the correct format and not sent by the bot
-     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
-       console.log("parsed message");
-       if (message.includes("show price")) {
-         console.log("found show price");
-         //parse text for all coin references
-         parseCoins(message).then(function(parsedCoins){
-           ((parsedCoins.length > 0) ? update(parsedCoins, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
-         }).catch(function(err){
-           payload.reply(err);
-         });
-       }
-     }
-  });
+    if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
+      //ENABLE/DISABLE
+      if ((message.includes("enable") || message.includes("disable")) && ! (message.includes("are") || message.includes("is"))) {
+        if (message.includes("up")) {
+          ((message.includes("enable")) ? enableAutomaticUpdates(true) : enableAutomaticUpdates(false));
+          payload.reply(saySuccessMessage());
+        } else if (message.includes("alerts")) {
+          ((message.includes("enable")) ? enableAlerts(true) : enableAlerts(false));
+          payload.reply(saySuccessMessage());
+        }
+      //CREATE
+      } else if (message.includes("add")) {
+        if (message.includes("interest")) {
+          addInterest(message, channel);
+        } else {
+          payload.reply(noUnderstand);
+        }
+      //READ
+    } else if (message.includes("display") || message.includes("show") || message.includes("what") || message.includes("is") || message.includes("are")) {
+        if (message.includes("price") || message.includes("prices")) {
+          if (message.includes("interest")) {
+            ((interestList.length > 0) ? update(interestList, channel) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot add BTC to the interest list.'"));
+          } else {
+            //parse text for all coin references
+            parseCoins(message).then(function(parsedCoins){
+              ((parsedCoins.length > 0) ? update(parsedCoins, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
+            }).catch(function(err){
+              payload.reply(err);
+            });
+          }
+        } else if (message.includes("interest")) {
+          ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot add BTC to the interest list.'"));
+        } else if (message.includes("update")) {
+          if (message.includes("interval") || message.includes("period")) {
+            payload.reply("The current automatic update interval is set to " + (updateInterval / 60 / 60) + " hours." );
+          } else if (message.includes("channel")) {
+            payload.reply("The current channel receiving the automatic updates and rapid price increase alerts is " + updateChannel + "." );
+          } else if (message.includes("enabled")) {
+            ((automaticUpdatesEnabled) ? payload.reply("Automatic updates are indeed enabled! You'll be updated every " + (updateInterval / 60 / 60) + " hours." ) : payload.reply("It seems as though automatic updates are disabled." ));
+          } else {
+            payload.reply(noUnderstand);
+          }
+        } else if (message.includes("alerts")) {
+          if (message.includes("threshold") || message.includes("amount")) {
+            payload.reply("The current pump and dump threshold is set to " + alertThreshold + "% in one hour.");
+          } else if (message.includes("channel")) {
+            payload.reply("The current channel receiving the rapid price increase alerts and automatic updates is " + updateChannel + "." );
+          } else if (message.includes("enabled")) {
+            ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease in over one hour." ) : payload.reply("It seems as though automatic updates are disabled." ));
+          } else {
+            payload.reply(noUnderstand);
+          }
+        } else {
+          payload.reply(noUnderstand);
+        }
+      //UPDATE
+      } else if (message.includes("update") || message.includes("set")) {
+        if (message.includes("alert")) {
+          if (alertsEnabled === false) {
+            payload.reply("Uh oh! It looks like pump/dump alerts are disabled. To enable them, type '!cryptobot enable alerts'." );
+          } else if (message.includes("channel") || message.includes("location"))  {
+            setUpdateChannel(channel);
+            saySuccessMessage(channel, "I set the update and alerts channel to " + channel + ". That's where you'll get updated automatically from now on.");
+          } else if (message.includes("threshold"))  {
+            parseFloatComplex(message).then(function(num){
+              setAlertThreshold(num).then(function(resolved){
+                saySuccessMessage(channel, "You'll be automagically updated on coins that reach " + num + "% increase/decrease in one hour from now on.");
+              }).catch(function(err){
+                payload.reply(err);
+              });
+            }).catch(function(err){
+              payload.reply(err);
+            });
+          } else {
+            payload.reply(noUnderstand);
+          }
+        } else if (message.includes("update")) {
+          if (automaticUpdatesEnabled === false) {
+            payload.reply("Uh oh! It looks like automatic updates on your favorite coins are disabled. To enable them, type '!cryptobot enable updates'." );
+          } else if (message.includes("channel") || message.includes("location"))  {
+            setUpdateChannel(channel);
+            saySuccessMessage(channel, "I set the update channel to " + channel + ". That's where you'll get updated automatically from now on.");
+          } else if (message.includes("interval"))  {
+            parseFloatComplex(message).then(function(num){
+              setUpdateInterval(num).then(function(resolved){
+                saySuccessMessage(channel, "You'll be automagically updated on your coins interests every " + num + " hours from now on.");
+              }).catch(function(err){
+                payload.reply(err);
+              });
+            }).catch(function(err){
+              payload.reply(err);
+            });
+          } else {
+            payload.reply(noUnderstand);
+          }
+        } else {
+          payload.reply(noUnderstand);
+        }
+      //DELETE
+      } else if (message.includes("remove") || message.includes("delete")) {
+        if (message.includes("interest")) {
+          removeInterest(message, channel);
+        }
+      //HELP
+      } else if (message.includes("help")) {
+        //display the list of functions
+        payload.reply(displayHelp());
+      //GREETINGS
+      } else if (message.includes("hello") || message.includes("greetings") || message.includes("yo")){
+        payload.reply(sayGreeting());
+      } else {
+        payload.reply(noUnderstand);
+      }
+}
 
 
 
