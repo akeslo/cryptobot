@@ -34,7 +34,7 @@ var tickerUpdateInterval = 30,
 
 //get the data initially and continue to refresh it every 'tickerUpdateInterval' seconds
 getTickerData();
-//var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
+var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
 
 function getTickerData() {
   let cmcGET = new Promise(function(resolve, reject) {
@@ -477,8 +477,22 @@ bot.on('ready', () => {
     }
 
     function displayHelp() {
-      return `You can ask me the following things:\n
-      *enable* or *disable* updates, alerts\n *add* (coin) to interest list\n *display/show/what/is/are* interest list, updates enabled, update interval, update channel, alerts enabled, alert threshold, alert channel, (coin) price, interest list prices\n *update/set* (hours) update interval, update channel, (percent) alert threshold, alert channel\n *remove/delete* (coin) from interest list\n *enable* automatic updates, price alerts\n *help* show this information panel`;
+      return `Here is what I can do:\n
+      All commands must begin with !cryptobot \n \n
+      Interest List: A coin watch list\n
+      Commands: interestlist show \n
+                interestlist add (coin) \n
+                interestlist remove (coin) \n \n
+
+
+      Updates: Send periodic price updates to the channel.
+      *enable* or *disable* updates, alerts\n
+      *add* (coin) to interest list\n
+      *display/show/what/is/are* interest list, updates enabled, update interval, update channel, alerts enabled, alert threshold, alert channel, (coin) price, interest list prices\n
+      *update/set* (hours) update interval, update channel, (percent) alert threshold, alert channel\n
+      *remove/delete* (coin) from interest list\n
+      *enable* automatic updates, price alerts\n
+      *help* show this information panel`;
     }
   });
 });
