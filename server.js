@@ -7,6 +7,7 @@ var port = process.env.PORT || 3030;
 const bot = require('./app');
 
 app.use(bodyParser.urlencoded({extended: true}));
+bot();
 
 app.get('/', function(req, res){
   res.status(200).send('CryptoBot listening service online. Bleep bloop.')
