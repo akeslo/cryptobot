@@ -43,7 +43,6 @@ function getTickerData() {
 
       response.on("data", function(chunk) {
         chunks.push(chunk);
-        channel.send(chunk);
       });
 
       response.on("end", function() {
@@ -104,6 +103,7 @@ bot.on('ready', () => {
   bot_name = bot.user.username;
   bot_id = bot.user.id;
   console.log('Successfully logged in as %s. Bot online. Bleep bloop.', bot_name);
+  channel.send('Successfully logged in as %s. Bot online. Bleep bloop.', bot_name);
 
   var interestList = require(interest_list);
 
