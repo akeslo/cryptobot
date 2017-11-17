@@ -25,7 +25,7 @@ var tickerUpdateInterval = 30,
     tickerDataOptions = {
       "method": "GET",
       "hostname": "api.coinmarketcap.com",
-      "port": null,
+      "port": 443,
       "path": "/v1/ticker/",
       "headers": {
         "cache-control": "no-cache"
