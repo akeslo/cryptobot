@@ -6,7 +6,7 @@ var Discord = require('discord.js'),
     fs = require('fs');
 
 //declare some variables that help the bot function
-var bot_token = process.env.BOT_TOKEN || 'MzgwNDYzMzc4MTA5NDMxODA4.DO6HIA.HFYXhO0ngqBpOt5XLCfjKoggC6Q',
+var bot_token = process.env.BOT_TOKEN || 'MzgwNDYzMzc4MTA5NDMxODA4.DPDICQ.9utioBEjpjJkdGZy3Z-3Kwmup1A',
     bot_name,
     bot_id;
 
@@ -234,7 +234,7 @@ bot.on('ready', () => {
   }
 
   //////////// MANUAL INTERACTION ///////////////
-  bot.on('message', message => {
+  bot.on('message', function(payload){
     var noUnderstand = "I'm sorry, I didn't understand what you asked. Type *!cryptobot help* to see a detail of my commands.";
 
     var message = payload.content,
@@ -354,7 +354,7 @@ bot.on('ready', () => {
       } else {
         payload.reply(noUnderstand);
       }
-    })
+    }
 
     function parseCoins(message) {
       return new Promise(function(resolve, reject){
