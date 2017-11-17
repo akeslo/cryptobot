@@ -430,7 +430,6 @@ bot.on('ready', () => {
     }
 
     function addInterest(string, channel) {
-      channel.send("Made it to interest list function");
       //parse text for all coin references
       parseCoins(string).then(function(parsedCoins){
         for (var coin in parsedCoins) {
@@ -480,11 +479,16 @@ bot.on('ready', () => {
       return `Here is what I can do:
       All commands must begin with !cryptobot
 
+      Prices: Display current coin price
+      Commands:
+                show (coin) price
+
       Interest List: A coin watch list
       Commands:
-                interestlist show
                 interestlist add (coin)
                 interestlist remove (coin)
+                interestlist show
+                interestlist show prices
 
       Updates: Send periodic price updates to the channel.
       Commands:
@@ -495,13 +499,12 @@ bot.on('ready', () => {
                 show update interval
                 show update channel
 
-      *enable* or *disable* updates, alerts
-      *add* (coin) to interest list
-      *display/show/what/is/are* interest list, updates enabled, update interval, update channel, alerts enabled, alert threshold, alert channel, (coin) price, interest list prices
-      *update/set* (hours) update interval, update channel, (percent) alert threshold, alert channel
-      *remove/delete* (coin) from interest list
-      *enable* automatic updates, price alerts
-      *help* show this information panel`;
+      Alerts: Percent based threshold alerts
+      Commands:
+                enable alerts
+                disable alerts
+                set (percent) alert threshold
+                set alert channel`;
     }
   });
 });
