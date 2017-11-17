@@ -240,8 +240,6 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
-    console.log(message + ' ' + author);
-
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
       //ENABLE/DISABLE
       if ((message.includes("enable") || message.includes("disable")) && ! (message.includes("are") || message.includes("is"))) {
