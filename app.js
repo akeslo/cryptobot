@@ -59,10 +59,10 @@ function getTickerData() {
   });
 
   cmcGET.then(function(data){
+    console.log(data);
     if (data && data != 'undefined') {
       tickerData = data;
       tickerData = JSON.parse(tickerData);
-      console.log(data);
       return data;
     }
   }).catch(function(err){
