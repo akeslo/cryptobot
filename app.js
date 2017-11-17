@@ -34,7 +34,7 @@ var tickerUpdateInterval = 30,
 
 //get the data initially and continue to refresh it every 'tickerUpdateInterval' seconds
 getTickerData();
-var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
+//var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
 
 function getTickerData() {
   let cmcGET = new Promise(function(resolve, reject) {
@@ -240,6 +240,8 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
+    console.log(message + ' ' + author);
+
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
       //ENABLE/DISABLE
       if ((message.includes("enable") || message.includes("disable")) && ! (message.includes("are") || message.includes("is"))) {
@@ -255,7 +257,7 @@ bot.on('ready', () => {
         if (message.includes("interest")) {
           addInterest(message, channel);
         } else {
-          payload.reply(noUnderstand);
+          payload.reply('1' + noUnderstand);
         }
       //READ
     } else if (message.includes("display") || message.includes("show") || message.includes("what") || message.includes("is") || message.includes("are")) {
@@ -280,7 +282,7 @@ bot.on('ready', () => {
           } else if (message.includes("enabled")) {
             ((automaticUpdatesEnabled) ? payload.reply("Automatic updates are indeed enabled! You'll be updated every " + (updateInterval / 60 / 60) + " hours." ) : payload.reply("It seems as though automatic updates are disabled." ));
           } else {
-            payload.reply(noUnderstand);
+            payload.reply('2' + noUnderstand);
           }
         } else if (message.includes("alerts")) {
           if (message.includes("threshold") || message.includes("amount")) {
@@ -290,10 +292,10 @@ bot.on('ready', () => {
           } else if (message.includes("enabled")) {
             ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease in over one hour." ) : payload.reply("It seems as though automatic updates are disabled." ));
           } else {
-            payload.reply(noUnderstand);
+            payload.reply('3' + noUnderstand);
           }
         } else {
-          payload.reply(noUnderstand);
+          payload.reply('4' + noUnderstand);
         }
       //UPDATE
       } else if (message.includes("update") || message.includes("set")) {
@@ -314,7 +316,7 @@ bot.on('ready', () => {
               payload.reply(err);
             });
           } else {
-            payload.reply(noUnderstand);
+            payload.reply('5' + noUnderstand);
           }
         } else if (message.includes("update")) {
           if (automaticUpdatesEnabled === false) {
@@ -333,10 +335,10 @@ bot.on('ready', () => {
               payload.reply(err);
             });
           } else {
-            payload.reply(noUnderstand);
+            payload.reply('6' + noUnderstand);
           }
         } else {
-          payload.reply(noUnderstand);
+          payload.reply('7' + noUnderstand);
         }
       //DELETE
       } else if (message.includes("remove") || message.includes("delete")) {
@@ -351,12 +353,9 @@ bot.on('ready', () => {
       } else if (message.includes("hello") || message.includes("greetings") || message.includes("yo")){
         payload.reply(sayGreeting());
       } else {
-        payload.reply(noUnderstand);
+        payload.reply('8' + noUnderstand);
       }
-}
-
-
-
+    }
 
     function parseCoins(message) {
       return new Promise(function(resolve, reject){
@@ -433,6 +432,7 @@ bot.on('ready', () => {
     }
 
     function addInterest(string, channel) {
+      channel.send("Made it to interest list function");
       //parse text for all coin references
       parseCoins(string).then(function(parsedCoins){
         for (var coin in parsedCoins) {
@@ -479,40 +479,7 @@ bot.on('ready', () => {
     }
 
     function displayHelp() {
-      return `Here is what I can do:
-
-      All commands must begin with !cryptobot
-
-      Price: Display current coin price
-      Commands:
-                show price *coin*
-
-      Interest List: A coin watch list
-      Commands:
-                interestlist add *coin*
-                interestlist remove *coin*
-                interestlist show
-                interestlist show prices
-
-      Updates: Send periodic price updates to the channel.
-      Commands:
-                enable updates
-                disable updates
-                set (hours) update interval
-                set update channel
-                show updates enabled
-                show updates interval
-                show updates channel
-
-      Alerts: Percent based threshold alerts
-      Commands:
-                enable alerts
-                disable alerts
-                set (percent) alert threshold
-                set alert channel
-                show alerts enabled
-                show alerts interval
-                show alerts channel`;
+      return `You can ask me the following things:\n *enable* or *disable* updates, alerts\n *add* (coin) to interest list\n *display/show/what/is/are* interest list, updates enabled, update interval, update channel, alerts enabled, alert threshold, alert channel, (coin) price, interest list prices\n *update/set* (hours) update interval, update channel, (percent) alert threshold, alert channel\n *remove/delete* (coin) from interest list\n *enable* automatic updates, price alerts\n *help* show this information panel`;
     }
   });
 });
