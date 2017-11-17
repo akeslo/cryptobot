@@ -37,6 +37,7 @@ getTickerData();
 var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
 
 function getTickerData() {
+  console.log("made it to ticket data");
   let cmcGET = new Promise(function(resolve, reject) {
     var request = http.request(tickerDataOptions, function(response) {
       var chunks = [];
@@ -91,7 +92,6 @@ function getCoinList() {
     var coinList = [];
     for (var ticker in tickerData) {
       coinList.push(tickerData[ticker].symbol);
-      console.log(coinList);
       if ((parseInt(ticker) + 1) == tickerData.length) {
         resolve(coinList);
       }
