@@ -233,7 +233,7 @@ bot.on('ready', () => {
   }
 
   //////////// MANUAL INTERACTION ///////////////
-  bot.on('message', function(payload){
+  bot.on('message', payload => {
     var noUnderstand = "I'm sorry, I didn't understand what you asked. Type *!cryptobot help* to see a detail of my commands.";
 
     var message = payload.content,
