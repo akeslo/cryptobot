@@ -253,7 +253,6 @@ bot.on('ready', () => {
           payload.reply(displayHelp());
           break;
       default:
-          code block
   }
 
     function parseCoins(message) {
