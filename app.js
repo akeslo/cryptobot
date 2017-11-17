@@ -243,6 +243,7 @@ bot.on('ready', () => {
     //message parse to determine if it is in correct formt and not from bot
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
       if (message.includes("show") && message.includes("price")) {
+          channel.send("in function");
           //parse text for all coin references
           parseCoins(message).then(function(parsedCoins){
             ((parsedCoins.length > 0) ? update(parsedCoins, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
