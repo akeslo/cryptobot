@@ -128,7 +128,7 @@ bot.on('ready', () => {
 
         selectCoinInfo(target).then(function(coinInfo){
           ((coinInfo && coinInfo.symbol) ? updateMessage = "*" + coinInfo.symbol.toUpperCase() + "*: " + coinInfo.price_btc + " BTC ($" + coinInfo.price_usd + ") | *" + coinInfo.percent_change_24h + "%* in 24 hours (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
-          ((liveChannel) ? liveChannel.send(updateMessage) : console.log(updateMessage));
+          ((liveChannel) ? liveChannel.send("Price Update!: \n" + updateMessage) : console.log(updateMessage));
         }).catch(function(err){
           ((liveChannel) ? liveChannel.send(err) : console.log(err));
         });
