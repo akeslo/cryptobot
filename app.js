@@ -274,8 +274,8 @@ bot.on('ready', () => {
           }
 
         } else if (message.includes("set")) {
-          channel.send("made it");
           if (message.includes("channel")) {
+            channel.send("made it");
             setUpdateChannel(channel.name);
             saySuccessMessage(channel.name, "I set the update channel to " + channel.name + ". That's where you'll get updated automatically from now on.");
           }
