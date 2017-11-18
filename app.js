@@ -241,7 +241,10 @@ bot.on('ready', () => {
         channel = payload.channel;
 
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
-      
+      if (message.includes("help")) {
+        //display the list of functions
+        payload.reply(displayHelp());
+      }
     }
 
     function parseCoins(message) {
