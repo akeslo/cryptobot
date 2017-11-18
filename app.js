@@ -149,7 +149,7 @@ bot.on('ready', () => {
   function alert(alertList) {
     console.log("Alerts Are: " + alertsEnabled)
     if (alertsEnabled) {
-      channel = bot.channels.find('name', channel);
+      channel = bot.channels.find('name', updateChannel);
       if (tickerData.length !== 0 && alertList.length !== 0) {
         for (var coin in alertList) {
           var alertMessage,
