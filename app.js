@@ -259,6 +259,7 @@ bot.on('ready', () => {
 
       /*  enable updates; disable updates; set (hours) update interval; set update channel; show updates enabled; show updates interval; show updates channel */
       } else if (message.includes("updates") || message.includes("update")) {
+        channel.send("made it");
         if ((message.includes("enable") || message.includes("disable") ) && ! (message.includes("show"))) {
           ((message.includes("enable")) ? enableAutomaticUpdates(true) : enableAutomaticUpdates(false));
           payload.reply(saySuccessMessage());
