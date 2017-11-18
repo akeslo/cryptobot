@@ -240,12 +240,23 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
-    console.log(author.username);
-
     if (message && message.includes("!" + bot_name.toLowerCase()) && author.username !== bot_name) {
       if (message.includes("help")) {
         //display the list of functions
         payload.reply(displayHelp());
+
+      /* interestlist add coin interestlist remove coin interestlist show interestlist show prices */
+      } else if (message.includes("interestlist")) {
+        if (message.includes("add")) {
+          addInterest(message, channel);
+        } else if (message.includes("remove")) {
+          removeInterest(message, channel);
+        } else if (message.includes("show") && message.includes("prices")) {
+          ((interestList.length > 0) ? update(interestList, channel) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot add BTC to the interest list.'"));
+        } else if (message.includes("show")) {
+          ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot add BTC to the interest list.'"));
+        }
+
       } else if (message.includes("show") && (message.includes("price"))) {
         //parse text for all coin references
         parseCoins(message).then(function(parsedCoins){
@@ -253,10 +264,12 @@ bot.on('ready', () => {
         }).catch(function(err){
           payload.reply(err);
         });
+
       }
 
 
     }
+
 
     function parseCoins(message) {
       return new Promise(function(resolve, reject){
