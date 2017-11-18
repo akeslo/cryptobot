@@ -109,8 +109,8 @@ var automaticUpdatesEnabled = botConfig.updates.enabled,
     automaticAlerts;
 
 bot.on('ready', () => {
-  bot_name = bot.user.username;
-  bot_id = bot.user.id;
+  bot_name =  process.env.BOT_NAME;
+  bot_id =  process.env.BOT_ID;
   console.log('Successfully logged in as %s. Bot online. Bleep bloop.', bot_name);
 
   var interestList = require(interest_list);

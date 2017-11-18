@@ -1,8 +1,4 @@
 {
-  "bot": {
-    "id": process.env.BOT_ID,
-    "name": process.env.BOT_NAME
-  },
   "updates": {
     "enabled": true,
     "interval": 0.02,
