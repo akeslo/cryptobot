@@ -116,9 +116,10 @@ bot.on('ready', () => {
   var interestList = require(interest_list);
 
   setUpdateInterval(updateInterval);
+
   if (alertsEnabled) {
     console.log("Alerts are enabled");
-    setInterval(alert, (tickerUpdateInterval + 30) * 1000, interestList);
+    setInterval(alert, (tickerUpdateInterval + 30) * 1000q, interestList);
   }
 
   function updateTimed(updateList, channel) {
@@ -255,7 +256,7 @@ bot.on('ready', () => {
     if (message && message.includes("!" + bot_name.toLowerCase()) && author.username !== bot_name) {
       if (message.includes("help")) {
         //display the list of functions
-        author.username.send(displayHelp());
+        payload.reply(displayHelp());
 
       /* interestlist add coin interestlist remove coin interestlist show interestlist show prices */
       } else if (message.includes("interestlist")) {
