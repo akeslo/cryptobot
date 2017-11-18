@@ -1,11 +1,11 @@
 {
   "bot": {
-    "id": "380463378109431808",
-    "name": "cryptobot"
+    "id": process.env.BOT_ID,
+    "name": process.env.BOT_NAME
   },
   "updates": {
     "enabled": true,
-    "interval": 0.05,
+    "interval": 0.02,
     "channel": "general"
   },
   "alerts": {

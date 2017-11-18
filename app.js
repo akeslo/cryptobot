@@ -6,7 +6,7 @@ var Discord = require('discord.js'),
     fs = require('fs');
 
 //declare some variables that help the bot function
-var bot_token = process.env.BOT_TOKEN || 'MzgwNDYzMzc4MTA5NDMxODA4.DPDICQ.9utioBEjpjJkdGZy3Z-3Kwmup1A',
+var bot_token = process.env.BOT_TOKEN,
     bot_name,
     bot_id;
 
@@ -251,7 +251,7 @@ bot.on('ready', () => {
     if (message && message.includes("!" + bot_name.toLowerCase()) && author.username !== bot_name) {
       if (message.includes("help")) {
         //display the list of functions
-        payload.reply(displayHelp());
+        author.username.send(displayHelp());
 
       /* interestlist add coin interestlist remove coin interestlist show interestlist show prices */
       } else if (message.includes("interestlist")) {
