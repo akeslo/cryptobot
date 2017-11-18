@@ -163,7 +163,7 @@ bot.on('ready', () => {
       automaticUpdates,
       automaticAlerts;
 
-  setUpdateInterval(updateInterval);
+  //setUpdateInterval(updateInterval);
 
   function enableAutomaticUpdates(bool){
     ((bool === true) ? automaticUpdatesEnabled = true : automaticUpdatesEnabled = false);
