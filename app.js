@@ -117,9 +117,13 @@ bot.on('ready', () => {
 
   setUpdateInterval(updateInterval);
 
-  function update(updateList, channel) {
+  function updateTimed(updateList, channel) {
     ((channel.send) ? channel : channel = bot.channels.find('name', channel));
-    console.log("Sending update to channel: " + channel);
+    ((channel.send) ? channel.send("@everyone --- Price Update ---") : console.log(updateMessage));
+    update(updateList, channel)
+  }
+
+  function update(updateList, channel) {
     if (tickerData.length !== 0 && updateList.length !== 0) {
       for (var coin in updateList) {
         var updateMessage,
@@ -180,7 +184,7 @@ bot.on('ready', () => {
         clearInterval(automaticUpdates);
         automaticUpdates = null;
         automaticUpdates = setInterval(function(){
-          ((interestList && updateChannel) ? update(interestList, updateChannel) : interestList);
+          ((interestList && updateChannel) ? updateTimed(interestList, updateChannel) : interestList);
         }, updateInterval * 1000);
         resolve(true);
       } else {
