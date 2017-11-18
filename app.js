@@ -187,7 +187,7 @@ bot.on('ready', () => {
 
   function setUpdateChannel(channel){
     updateChannel = channel;
-    channel.send("here");
+    console.log("here");
     saveConfig();
   }
 
