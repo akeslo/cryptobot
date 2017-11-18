@@ -116,6 +116,10 @@ bot.on('ready', () => {
   var interestList = require(interest_list);
 
   setUpdateInterval(updateInterval);
+  if (alertsEnabled) {
+    console.log("Alerts are enabled");
+    setInterval(alert(interestList), (tickerUpdateInterval + 30) * 1000);
+  }
 
   function updateTimed(updateList, channel) {
     ((channel.send) ? channel : channel = bot.channels.find('name', channel));
