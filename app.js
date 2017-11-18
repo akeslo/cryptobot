@@ -159,10 +159,11 @@ bot.on('ready', () => {
             if ((coinInfo.percent_change_1h > alertThreshold) || (coinInfo.percent_change_1h < alertThreshold * -1)) {
             ((coinInfo && coinInfo.symbol) ? alertMessage = "@everyone *ALERT*: It looks like " + coinInfo.symbol.toUpperCase() + " is making a large shift in price (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
             channel.send(alertMessage );
+            }
           }).catch(function(err){
             ((channel) ? channel.send(err) : console.log(err));
           });
-          }
+
         }
       } else {
         //no data to send
