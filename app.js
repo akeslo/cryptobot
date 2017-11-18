@@ -265,6 +265,10 @@ bot.on('ready', () => {
         } else if (message.includes("show")) {
           if (message.includes("enabled")) {
             ((automaticUpdatesEnabled) ? payload.reply("Automatic updates are indeed enabled! You'll be updated every " + (updateInterval / 60 / 60) + " hours." ) : payload.reply("It seems as though automatic updates are disabled." ));
+          } else if (message.includes("interval")) {
+            payload.reply("The current automatic update interval is set to " + (updateInterval / 60 / 60) + " hours." );
+          } else if (message.includes("channel")) {
+            payload.reply("The current channel receiving the automatic updates and rapid price increase alerts is " + updateChannel + "." );
           }
 
         }
