@@ -278,7 +278,6 @@ bot.on('ready', () => {
 
       /*  enable alerts disable alerts set (percent) alert threshold set alert channel show alerts enabled show alerts interval show alerts channel */
       } else if (message.includes("alert")) {
-        channel.send("made it");
         if ((message.includes("enable") || message.includes("disable")) && ! message.includes("enabled")) {
           ((message.includes("enable")) ? enableAlerts(true) : enableAlerts(false));
           payload.reply(saySuccessMessage());
@@ -293,7 +292,9 @@ bot.on('ready', () => {
            payload.reply(err);
          });
         } else if (message.includes("set") && message.includes("channel")) {
-
+          channel.send("made it");
+          setUpdateChannel(channel);
+          saySuccessMessage(channel, "I set the update and alerts channel to " + channel + ". That's where you'll get updated automatically from now on.");
         } else if (message.includes("show") && message.includes("enabled")) {
           ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease in over one hour." ) : payload.reply("It seems as though automatic updates are disabled." ));
         } else if (message.includes("show") && message.includes("threshold")) {
