@@ -240,6 +240,8 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
+    channel.send(message);
+
     if (message && message.includes("!" + bot_name.toLowerCase()) && author.username !== bot_name) {
       if (message.includes("help")) {
         //display the list of functions
@@ -278,7 +280,6 @@ bot.on('ready', () => {
             setUpdateChannel(channel.name);
             channel.send(saySuccessMessage("I set the update channel to " + channel.name + ". That's where you'll get updated automatically from now on."));
           } else if (message.includes("interval")) {
-            channel.send("here");
             parseFloatComplex(message).then(function(num){
               setUpdateInterval(num).then(function(resolved){
                 channel.send(saySuccessMessage("You'll be automagically updated on your coins interests every " + num + " hours from now on."));
