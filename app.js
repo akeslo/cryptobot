@@ -34,7 +34,7 @@ var tickerUpdateInterval = 30,
 
 //get the data initially and continue to refresh it every 'tickerUpdateInterval' seconds
 getTickerData();
-setInterval(getTickerData, tickerUpdateInterval * 1000);
+var dataInterval = setInterval(getTickerData, tickerUpdateInterval * 1000);
 
 function getTickerData() {
   let cmcGET = new Promise(function(resolve, reject) {
@@ -114,7 +114,7 @@ bot.on('ready', () => {
 
         selectCoinInfo(target).then(function(coinInfo){
           ((coinInfo && coinInfo.symbol) ? updateMessage = "*" + coinInfo.symbol.toUpperCase() + "*: " + coinInfo.price_btc + " BTC ($" + coinInfo.price_usd + ") | *" + coinInfo.percent_change_24h + "%* in 24 hours (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
-          channel.send(updateMessage);
+          ((channel) ? channel.send(updateMessage) : console.log(updateMessage)); 
         }).catch(function(err){
           ((channel) ? channel.send(err) : console.log(err));
         });
@@ -179,7 +179,6 @@ bot.on('ready', () => {
         clearInterval(automaticUpdates);
         automaticUpdates = null;
         automaticUpdates = setInterval(function(){
-          console.log("auto updates");
           ((interestList && updateChannel) ? update(interestList, updateChannel) : interestList);
         }, updateInterval * 1000);
         resolve(true);
