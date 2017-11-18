@@ -259,7 +259,7 @@ bot.on('ready', () => {
 
       /*  enable updates; disable updates; set (hours) update interval; set update channel; show updates enabled; show updates interval; show updates channel */
       } else if (message.includes("updates")) {
-        if (message.includes("enable") || message.includes("disable") && !message.includes("show")) {
+        if ((message.includes("enable") || message.includes("disable") ) && ! (message.includes("show"))) {
           ((message.includes("enable")) ? enableAutomaticUpdates(true) : enableAutomaticUpdates(false));
           payload.reply(saySuccessMessage());
         } else if (message.includes("show")) {
@@ -413,18 +413,15 @@ bot.on('ready', () => {
       All commands must begin with !cryptobot
 
       Price: Display current coin price
-      Commands:
                 show price *coin*
 
       Interest List: A coin watch list
-      Commands:
                 interestlist add *coin*
                 interestlist remove *coin*
                 interestlist show
                 interestlist show prices
 
       Updates: Send periodic price updates to the channel.
-      Commands:
                 enable updates
                 disable updates
                 set (hours) update interval
@@ -434,7 +431,6 @@ bot.on('ready', () => {
                 show updates channel
 
       Alerts: Percent based threshold alerts
-      Commands:
                 enable alerts
                 disable alerts
                 set (percent) alert threshold
