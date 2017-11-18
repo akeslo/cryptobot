@@ -259,11 +259,12 @@ bot.on('ready', () => {
 
       /*  enable updates; disable updates; set (hours) update interval; set update channel; show updates enabled; show updates interval; show updates channel */
       } else if (message.includes("updates") || message.includes("update")) {
-        channel.send("made it");
         if ((message.includes("enable") || message.includes("disable") ) && ! (message.includes("show"))) {
           ((message.includes("enable")) ? enableAutomaticUpdates(true) : enableAutomaticUpdates(false));
           payload.reply(saySuccessMessage());
+
         } else if (message.includes("show")) {
+
           if (message.includes("enabled")) {
             ((automaticUpdatesEnabled) ? payload.reply("Automatic updates are indeed enabled! You'll be updated every " + (updateInterval / 60 / 60) + " hours." ) : payload.reply("It seems as though automatic updates are disabled." ));
           } else if (message.includes("interval")) {
@@ -273,17 +274,8 @@ bot.on('ready', () => {
           }
 
         } else if (message.includes("set")) {
-          if (message.includes("interval")) {
-            parseFloatComplex(message).then(function(num){
-              setUpdateInterval(num).then(function(resolved){
-                saySuccessMessage(channel, "You'll be automagically updated on your coins interests every " + num + " hours from now on.");
-              }).catch(function(err){
-                payload.reply(err);
-              });
-            }).catch(function(err){
-              payload.reply(err);
-            });
-          } else if (message.includes("channel")) {
+          channel.send("made it");
+          if (message.includes("channel")) {
             setUpdateChannel(channel.name);
             saySuccessMessage(channel.name, "I set the update channel to " + channel.name + ". That's where you'll get updated automatically from now on.");
           }
