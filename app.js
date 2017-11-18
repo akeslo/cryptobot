@@ -463,6 +463,7 @@ bot.on('ready', () => {
             channel.send(saySuccessMessage("I can assure you that the coins you mentioned are not on the interest list anymore. You can type '$cryptobot interestlist show' to confirm."));
             //... and save the new interest list as 'interestlist.json'
             saveInterestList();
+            ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '$cryptobot interestlist add BTC.'"));
           }
         }
       }).catch(function(err){
