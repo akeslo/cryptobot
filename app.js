@@ -258,7 +258,7 @@ bot.on('ready', () => {
         }
 
       /*  enable updates; disable updates; set (hours) update interval; set update channel; show updates enabled; show updates interval; show updates channel */
-      } else if (message.includes("updates")) {
+      } else if (message.includes("updates") || message.includes("update")) {
         if ((message.includes("enable") || message.includes("disable") ) && ! (message.includes("show"))) {
           ((message.includes("enable")) ? enableAutomaticUpdates(true) : enableAutomaticUpdates(false));
           payload.reply(saySuccessMessage());
@@ -272,7 +272,7 @@ bot.on('ready', () => {
           }
 
         } else if (message.includes("set")) {
-          if (message.includes("update") && message.includes("interval")) {
+          if (message.includes("interval")) {
             parseFloatComplex(message).then(function(num){
               setUpdateInterval(num).then(function(resolved){
                 saySuccessMessage(channel, "You'll be automagically updated on your coins interests every " + num + " hours from now on.");
@@ -282,7 +282,7 @@ bot.on('ready', () => {
             }).catch(function(err){
               payload.reply(err);
             });
-          } else if (message.includes("update") && message.includes("channel")) {
+          } else if (message.includes("channel")) {
             setUpdateChannel(channel);
             saySuccessMessage(channel, "I set the update channel to " + channel + ". That's where you'll get updated automatically from now on.");
           }
