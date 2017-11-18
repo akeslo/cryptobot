@@ -277,10 +277,22 @@ bot.on('ready', () => {
 
       /*  enable alerts disable alerts set (percent) alert threshold set alert channel show alerts enabled show alerts interval show alerts channel */
       } else if (message.includes("alert")) {
-        if ((message.includes("enable") || message.includes("disable")) {
+        if (message.includes("enable") || message.includes("disable")) {
           ((message.includes("enable")) ? enableAlerts(true) : enableAlerts(false));
           payload.reply(saySuccessMessage());
-        } 
+        } else if (message.includes("set") && message.includes("threshold")) {
+            parseFloatComplex(message).then(function(num){
+           setAlertThreshold(num).then(function(resolved){
+             saySuccessMessage(channel, "You'll be automagically updated on coins that reach " + num + "% increase/decrease in one hour from now on.");
+           }).catch(function(err){
+             payload.reply(err);
+           });
+         }).catch(function(err){
+           payload.reply(err);
+         });
+        } else if (message.includes("set") && message.includes("channel")) {
+
+        }
 
 
       /*  enable updates; disable updates; set (hours) update interval; set update channel; show updates enabled; show updates interval; show updates channel */
