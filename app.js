@@ -345,7 +345,7 @@ bot.on('ready', () => {
 
     function minusBotReference(str){
       return new Promise(function(resolve, reject){
-        if (str && typeof str === 'string' && text !== "") {
+        if (str && typeof str === 'string' && str !== "") {
           var re_id = new RegExp(bot_id.toString(), "g"),
               re_name = new RegExp(bot_name.toString(), "g");
           str = str.replace(re_id, "");
