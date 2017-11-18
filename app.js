@@ -105,6 +105,7 @@ var automaticUpdatesEnabled = botConfig.updates.enabled,
     updateChannel = botConfig.updates.channel,
     alertsEnabled = botConfig.alerts.enabled,
     alertThreshold = botConfig.alerts.threshold,
+    alertInterval = botConfig.alerts.interval,
     automaticUpdates,
     automaticAlerts;
 
@@ -116,7 +117,7 @@ bot.on('ready', () => {
   var interestList = require(interest_list);
 
   setUpdateInterval(updateInterval);
-  setInterval(alert, (600) * 1000, interestList);
+  setInterval(alert, (alertInterval) * 1000, interestList);
 
   function updateTimed(updateList, channel) {
     console.log("Automatic Updates Are: " + automaticUpdatesEnabled)
@@ -291,6 +292,12 @@ bot.on('ready', () => {
            payload.reply(err);
          });
         } else if (message.includes("set") && message.includes("channel")) {
+
+        } else if (message.includes("show") && message.includes("enabled")) {
+
+        } else if (message.includes("show") && message.includes("interval")) {
+
+        } else if (message.includes("show") && message.includes("channel")) {
 
         }
 
