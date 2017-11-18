@@ -106,6 +106,7 @@ bot.on('ready', () => {
   var interestList = require(interest_list);
 
   function update(updateList, channel) {
+    channel.send("update called");
     if (tickerData.length !== 0 && updateList.length !== 0) {
       for (var coin in updateList) {
         var updateMessage,
