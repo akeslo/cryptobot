@@ -240,11 +240,9 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
-    console.log(message + ' ' + author);
-
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
       //ENABLE/DISABLE
-      if ((message.includes("enable") || message.includes("disable")) && ! (message.includes("are") || message.includes("is"))) {
+      if (message.includes("enable") || message.includes("disable")) {
         if (message.includes("up")) {
           ((message.includes("enable")) ? enableAutomaticUpdates(true) : enableAutomaticUpdates(false));
           payload.reply(saySuccessMessage());
@@ -257,12 +255,12 @@ bot.on('ready', () => {
         if (message.includes("interest")) {
           addInterest(message, channel);
         } else {
-          payload.reply('1' + noUnderstand);
+          payload.reply(noUnderstand);
         }
       //READ
-    } else if (message.includes("display") || message.includes("show") || message.includes("what") || message.includes("is") || message.includes("are")) {
+    } else if (message.includes("show")) {
         if (message.includes("price") || message.includes("prices")) {
-          if (message.includes("interest")) {
+          if (message.includes("interestlist")) {
             ((interestList.length > 0) ? update(interestList, channel) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot add BTC to the interest list.'"));
           } else {
             //parse text for all coin references
@@ -272,7 +270,7 @@ bot.on('ready', () => {
               payload.reply(err);
             });
           }
-        } else if (message.includes("interest")) {
+        } else if (message.includes("interestlist")) {
           ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot add BTC to the interest list.'"));
         } else if (message.includes("update")) {
           if (message.includes("interval") || message.includes("period")) {
@@ -292,10 +290,10 @@ bot.on('ready', () => {
           } else if (message.includes("enabled")) {
             ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease in over one hour." ) : payload.reply("It seems as though automatic updates are disabled." ));
           } else {
-            payload.reply('3' + noUnderstand);
+            payload.reply(noUnderstand);
           }
         } else {
-          payload.reply('4' + noUnderstand);
+          payload.reply(noUnderstand);
         }
       //UPDATE
       } else if (message.includes("update") || message.includes("set")) {
@@ -316,7 +314,7 @@ bot.on('ready', () => {
               payload.reply(err);
             });
           } else {
-            payload.reply('5' + noUnderstand);
+            payload.reply(noUnderstand);
           }
         } else if (message.includes("update")) {
           if (automaticUpdatesEnabled === false) {
@@ -341,8 +339,8 @@ bot.on('ready', () => {
           payload.reply('7' + noUnderstand);
         }
       //DELETE
-      } else if (message.includes("remove") || message.includes("delete")) {
-        if (message.includes("interest")) {
+      } else if (message.includes("delete")) {
+        if (message.includes("interestlist")) {
           removeInterest(message, channel);
         }
       //HELP
