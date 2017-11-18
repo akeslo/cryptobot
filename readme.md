@@ -1,5 +1,5 @@
 # Cryptobot
-Cryptobot is a versatile cryptocurrency bot that is built for both Slack and Discord. There are two different versions, each hosted on a separate branch in this repository.
+Cryptobot is a versatile cryptocurrency bot that is built for Discord.
 
 ## Configuration
 * Create the following environmental variables:
@@ -26,4 +26,4 @@ If you are new to adding bots to your server, building a Discord bot, or running
 
 ## Shoutouts
 * This code was updated for discord and taken from [LuminoCo/cryptobot](//https://github.com/LuminoCo/cryptobot).  As their discord branch currently sits, discord does not deploy :-(.  However, a big thanks to them for the initial code base!
-* No support for slack in this repo.
+* No support for slack in this repo, see original repo for slack support.
