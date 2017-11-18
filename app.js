@@ -114,14 +114,14 @@ bot.on('ready', () => {
 
         selectCoinInfo(target).then(function(coinInfo){
           ((coinInfo && coinInfo.symbol) ? updateMessage = "*" + coinInfo.symbol.toUpperCase() + "*: " + coinInfo.price_btc + " BTC ($" + coinInfo.price_usd + ") | *" + coinInfo.percent_change_24h + "%* in 24 hours (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
-          ((channel) ? channel.send(updateMessage) : console.log(updateMessage)); 
+          ((channel) ? channel.send(updateMessage) : console.log(updateMessage));
         }).catch(function(err){
           ((channel) ? channel.send(err) : console.log(err));
         });
       }
     } else {
       //no data to send
-      channel.send("Uh oh! Looks like there's no data for me to send you... coinmarketcap.com might be down or I might be disconnected from their server." );
+      ((channel) ? channel.send("Uh oh! Looks like there's no data for me to send you... coinmarketcap.com might be down or I might be disconnected from their server." ) : console.log(err));
     }
   }
 
