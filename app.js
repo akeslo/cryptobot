@@ -126,7 +126,7 @@ bot.on('ready', () => {
             target = updateList[coin];
 
         selectCoinInfo(target).then(function(coinInfo){
-          ((coinInfo && coinInfo.symbol) ? updateMessage = "*" + coinInfo.symbol.toUpperCase() + "*: " + coinInfo.price_btc + " BTC ($" + coinInfo.price_usd + ") | *" + coinInfo.percent_change_24h + "%* in 24 hours (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
+          ((coinInfo && coinInfo.symbol) ? updateMessage = "*" + coinInfo.symbol.toUpperCase() + "*: " + "$" + coinInfo.price_usd + " ("+ coinInfo.price_btc + " BTC ) | *" + coinInfo.percent_change_24h + "%* in 24 hours (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
           ((channel.send) ? channel.send(updateMessage) : console.log(updateMessage));
         }).catch(function(err){
           ((channel.send) ? channel.send(err) : console.log(err));
