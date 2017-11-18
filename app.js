@@ -262,6 +262,11 @@ bot.on('ready', () => {
         if (message.includes("enable") || message.includes("disable")) {
           ((message.includes("enable")) ? enableAutomaticUpdates(true) : enableAutomaticUpdates(false));
           payload.reply(saySuccessMessage());
+        } else if (message.includes("show")) {
+          if (message.includes("enabled")) {
+            ((automaticUpdatesEnabled) ? payload.reply("Automatic updates are indeed enabled! You'll be updated every " + (updateInterval / 60 / 60) + " hours." ) : payload.reply("It seems as though automatic updates are disabled." ));
+          }
+
         }
 
       } else if (message.includes("show") && (message.includes("price"))) {
