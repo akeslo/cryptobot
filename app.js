@@ -339,7 +339,7 @@ bot.on('ready', () => {
           payload.reply('7' + noUnderstand);
         }
       //DELETE
-      } else if (message.includes("delete")) {
+    } else if (message.includes("remove")) {
         if (message.includes("interestlist")) {
           removeInterest(message, channel);
         }
@@ -351,7 +351,7 @@ bot.on('ready', () => {
       } else if (message.includes("hello") || message.includes("greetings") || message.includes("yo")){
         payload.reply(sayGreeting());
       } else {
-        payload.reply('8' + noUnderstand);
+        payload.reply(noUnderstand);
       }
     }
 
