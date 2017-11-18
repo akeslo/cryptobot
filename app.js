@@ -116,16 +116,15 @@ bot.on('ready', () => {
   var interestList = require(interest_list);
 
   setUpdateInterval(updateInterval);
-
-  if (alertsEnabled) {
-    console.log("Alerts are enabled");
-    setInterval(alert, (tickerUpdateInterval + 30) * 1000, interestList);
-  }
+  setInterval(alert, (tickerUpdateInterval + 30) * 1000, interestList);
 
   function updateTimed(updateList, channel) {
+    console.log("Automatic Updates Are: " + automaticUpdatesEnabled)
+    if (automaticUpdatesEnabled) {
     ((channel.send) ? channel : channel = bot.channels.find('name', channel));
     ((channel.send) ? channel.send("**--- Price Update ---**") : console.log(updateMessage));
     update(updateList, channel)
+    }
   }
 
   function update(updateList, channel) {
@@ -148,21 +147,25 @@ bot.on('ready', () => {
   }
 
   function alert(alertList) {
-    if (tickerData.length !== 0 && alertList.length !== 0) {
-      for (var coin in alertList) {
-        var alertMessage,
-            target = alertList[coin];
+    console.log("Alerts Are: " + alertsEnabled)
+    if (alertsEnabled) {
+      channel = bot.channels.find('name', channel));
+      if (tickerData.length !== 0 && alertList.length !== 0) {
+        for (var coin in alertList) {
+          var alertMessage,
+              target = alertList[coin];
 
-        selectCoinInfo(target).then(function(coinInfo){
-          ((coinInfo && coinInfo.symbol) ? alertMessage = "*ALERT*: It looks like " + coinInfo.symbol.toUpperCase() + " is making a large shift in price (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
-          channel.send(alertMessage );
-        }).catch(function(err){
-          ((channel) ? channel.send(err) : console.log(err));
-        });
+          selectCoinInfo(target).then(function(coinInfo){
+            ((coinInfo && coinInfo.symbol) ? alertMessage = "*ALERT*: It looks like " + coinInfo.symbol.toUpperCase() + " is making a large shift in price (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
+            channel.send(alertMessage );
+          }).catch(function(err){
+            ((channel) ? channel.send(err) : console.log(err));
+          });
+        }
+      } else {
+        //no data to send
+        channel.send("Uh oh! Looks like there's no data for me to send you... coinmarketcap.com might be down or I might be disconnected from their server.");
       }
-    } else {
-      //no data to send
-      channel.send("Uh oh! Looks like there's no data for me to send you... coinmarketcap.com might be down or I might be disconnected from their server.");
     }
   }
 
