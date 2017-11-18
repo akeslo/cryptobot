@@ -6,6 +6,6 @@
   },
   "alerts": {
     "enabled": true,
-    "threshold": 1
+    "threshold": 3
   }
 }
