@@ -274,7 +274,6 @@ bot.on('ready', () => {
         } else if (message.includes("set")) {
           if (message.includes("interval")) {
             parseFloatComplex(message).then(function(num){
-              channel.send("here");
               setUpdateInterval(num).then(function(resolved){
                 saySuccessMessage(channel, "You'll be automagically updated on your coins interests every " + num + " hours from now on.");
               }).catch(function(err){
@@ -284,6 +283,7 @@ bot.on('ready', () => {
               payload.reply(err);
             });
           } else if (message.includes("channel")) {
+            channel.send("here");
             setUpdateChannel(channel);
             saySuccessMessage(channel, "I set the update channel to " + channel + ". That's where you'll get updated automatically from now on.");
           }
