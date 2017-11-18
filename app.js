@@ -291,6 +291,9 @@ bot.on('ready', () => {
          }).catch(function(err){
            payload.reply(err);
          });
+        } else if (message.includes("set") && message.includes("channel")) {
+          setUpdateChannel(channel.name);
+          channel.send(saySuccessMessage("I set the update channel to " + channel.name + ". That's where you'll get updated automatically from now on."));
         } else if (message.includes("show") && message.includes("enabled")) {
           ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease in over one hour." ) : payload.reply("It seems as though automatic updates are disabled." ));
         } else if (message.includes("show") && message.includes("threshold")) {
