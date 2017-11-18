@@ -240,7 +240,7 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
-    channel.send(channel);
+    console.log(channel);
 
     if (message && message.includes("!" + bot_name.toLowerCase()) && author.username !== bot_name) {
       if (message.includes("help")) {
