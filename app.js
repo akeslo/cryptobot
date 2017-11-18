@@ -116,7 +116,7 @@ bot.on('ready', () => {
   var interestList = require(interest_list);
 
   setUpdateInterval(updateInterval);
-  setInterval(alert, (tickerUpdateInterval + 30) * 1000, interestList);
+  setInterval(alert, (600) * 1000, interestList);
 
   function updateTimed(updateList, channel) {
     console.log("Automatic Updates Are: " + automaticUpdatesEnabled)
@@ -163,7 +163,6 @@ bot.on('ready', () => {
           }).catch(function(err){
             ((channel) ? channel.send(err) : console.log(err));
           });
-
         }
       } else {
         //no data to send
@@ -275,6 +274,14 @@ bot.on('ready', () => {
         } else if (message.includes("show")) {
           ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot interestlist add BTC.'"));
         }
+
+      /*  enable alerts disable alerts set (percent) alert threshold set alert channel show alerts enabled show alerts interval show alerts channel */
+      } else if (message.includes("alert")) {
+        if ((message.includes("enable") || message.includes("disable")) {
+          ((message.includes("enable")) ? enableAlerts(true) : enableAlerts(false));
+          payload.reply(saySuccessMessage());
+        }
+
 
       /*  enable updates; disable updates; set (hours) update interval; set update channel; show updates enabled; show updates interval; show updates channel */
       } else if (message.includes("updates") || message.includes("update")) {
