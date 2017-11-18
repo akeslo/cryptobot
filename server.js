@@ -6,6 +6,11 @@ var port = process.env.PORT || 3030;
 
 const bot = require('./app');
 
+var http = require("https");
+setInterval(function() {
+    https.get("https://discordcrypto.herokuapp.com/");
+}, 300000); // every 5 minutes (300000)
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res){

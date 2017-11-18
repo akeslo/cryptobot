@@ -257,6 +257,13 @@ bot.on('ready', () => {
           ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot interestlist add BTC.'"));
         }
 
+      /*  enable updates; disable updates; set (hours) update interval; set update channel; show updates enabled; show updates interval; show updates channel */
+      } else if (message.includes("updates")) {
+        if (message.includes("enable") || message.includes("disable")) {
+          ((message.includes("enable")) ? enableAutomaticUpdates(true) : enableAutomaticUpdates(false));
+          payload.reply(saySuccessMessage());
+        }
+
       } else if (message.includes("show") && (message.includes("price"))) {
         //parse text for all coin references
         parseCoins(message).then(function(parsedCoins){
@@ -372,7 +379,7 @@ bot.on('ready', () => {
           ((interestList.indexOf(parsedCoins[coin]) > -1) ? interestList.splice(index, 1) : payload.reply("Hmm, I don't see " + parsedCoins[coin] + " on the list." ));
           if ((parseInt(coin) + 1) == parsedCoins.length) {
             //update the user on the last cycle of the loop
-            channel.send(saySuccessMessage("I can assure you that the coins you mentioned are not on the interest list anymore. You can type '!cryptobot show me the interest list' to confirm."));
+            channel.send(saySuccessMessage("I can assure you that the coins you mentioned are not on the interest list anymore. You can type '!cryptobot interestlist show' to confirm."));
             //... and save the new interest list as 'interestlist.json'
             saveInterestList();
           }
