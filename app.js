@@ -272,6 +272,7 @@ bot.on('ready', () => {
           }).catch(function(err){
             payload.reply(err);
           });
+        ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '$cryptobot interestlist add BTC.'"));
         } else if (message.includes("remove")) {
           removeInterest(message, channel);
         } else if (message.includes("show") && message.includes("prices")) {
