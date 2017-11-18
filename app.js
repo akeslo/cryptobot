@@ -107,6 +107,7 @@ bot.on('ready', () => {
 
   function update(updateList, channel) {
     channel.send("update called");
+    console.log("update called");
     if (tickerData.length !== 0 && updateList.length !== 0) {
       for (var coin in updateList) {
         var updateMessage,
@@ -179,6 +180,7 @@ bot.on('ready', () => {
         clearInterval(automaticUpdates);
         automaticUpdates = null;
         automaticUpdates = setInterval(function(){
+          console.log("auto updates");
           ((interestList && updateChannel) ? update(interestList, updateChannel) : interestList);
         }, updateInterval * 1000);
         resolve(true);
