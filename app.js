@@ -280,7 +280,7 @@ bot.on('ready', () => {
         if ((message.includes("enable") || message.includes("disable")) {
           ((message.includes("enable")) ? enableAlerts(true) : enableAlerts(false));
           payload.reply(saySuccessMessage());
-        }
+        } 
 
 
       /*  enable updates; disable updates; set (hours) update interval; set update channel; show updates enabled; show updates interval; show updates channel */
