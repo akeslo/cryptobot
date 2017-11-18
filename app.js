@@ -244,7 +244,16 @@ bot.on('ready', () => {
       if (message.includes("help")) {
         //display the list of functions
         payload.reply(displayHelp());
+      } else if (message.includes("show") && (message.includes("price"))) {
+        //parse text for all coin references
+        parseCoins(message).then(function(parsedCoins){
+          ((parsedCoins.length > 0) ? update(parsedCoins, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
+        }).catch(function(err){
+          payload.reply(err);
+        });
       }
+
+
     }
 
     function parseCoins(message) {
