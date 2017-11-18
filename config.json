@@ -7,6 +7,6 @@
   "alerts": {
     "enabled": true,
     "threshold": 5,
-    "interval": 600
+    "interval": 1200000
   }
 }
