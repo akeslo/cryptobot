@@ -5,7 +5,7 @@
   },
   "updates": {
     "enabled": true,
-    "interval": 3600,
+    "interval": 300000,
     "channel": "general"
   },
   "alerts": {

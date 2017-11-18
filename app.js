@@ -98,12 +98,24 @@ function getCoinList() {
 }
 
 //the client will emit an RTM.AUTHENTICATED event on successful connection
+var botConfig = require(config);
+
+var automaticUpdatesEnabled = botConfig.updates.enabled,
+    updateInterval = botConfig.updates.interval,
+    updateChannel = botConfig.updates.channel,
+    alertsEnabled = botConfig.alerts.enabled,
+    alertThreshold = botConfig.alerts.threshold,
+    automaticUpdates,
+    automaticAlerts;
+
 bot.on('ready', () => {
   bot_name = bot.user.username;
   bot_id = bot.user.id;
   console.log('Successfully logged in as %s. Bot online. Bleep bloop.', bot_name);
 
   var interestList = require(interest_list);
+
+  setUpdateInterval(updateInterval);
 
   function update(updateList, channel) {
     console.log("update called");
@@ -152,18 +164,6 @@ bot.on('ready', () => {
     displayHelp(user.id);
   });
 
-
-  var botConfig = require(config);
-
-  var automaticUpdatesEnabled = botConfig.updates.enabled,
-      updateInterval = botConfig.updates.interval,
-      updateChannel = botConfig.updates.channel,
-      alertsEnabled = botConfig.alerts.enabled,
-      alertThreshold = botConfig.alerts.threshold,
-      automaticUpdates,
-      automaticAlerts;
-
-  //setUpdateInterval(updateInterval);
 
   function enableAutomaticUpdates(bool){
     ((bool === true) ? automaticUpdatesEnabled = true : automaticUpdatesEnabled = false);
