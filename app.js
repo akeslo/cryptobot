@@ -149,14 +149,14 @@ bot.on('ready', () => {
   function alert(alertList) {
     console.log("Alerts Are: " + alertsEnabled)
     if (alertsEnabled) {
-      channel = bot.channels.find('name', updateChannel);
+      var channel = bot.channels.find('name', updateChannel);
       if (tickerData.length !== 0 && alertList.length !== 0) {
         for (var coin in alertList) {
           var alertMessage,
               target = alertList[coin];
 
           selectCoinInfo(target).then(function(coinInfo){
-            ((coinInfo && coinInfo.symbol) ? alertMessage = "*ALERT*: It looks like " + coinInfo.symbol.toUpperCase() + " is making a large shift in price (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
+            ((coinInfo && coinInfo.symbol) ? alertMessage = "@everyone *ALERT*: It looks like " + coinInfo.symbol.toUpperCase() + " is making a large shift in price (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
             channel.send(alertMessage );
           }).catch(function(err){
             ((channel) ? channel.send(err) : console.log(err));

@@ -1,7 +1,7 @@
 {
   "updates": {
     "enabled": true,
-    "interval": 0.02,
+    "interval": 0.01,
     "channel": "general"
   },
   "alerts": {
