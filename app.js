@@ -118,7 +118,7 @@ bot.on('ready', () => {
   setUpdateInterval(updateInterval);
 
   function update(updateList, channel) {
-    if (channel) ? channel : channel = bot.channels.find('name', channel);
+    ((channel) ? channel : channel = bot.channels.find('name', channel));
     console.log("Sending update to channel: " + channel);
     if (tickerData.length !== 0 && updateList.length !== 0) {
       ((channel) ? channel.send("Price Update: \n") : console.log("Price Update: \n"));
