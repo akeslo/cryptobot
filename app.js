@@ -268,8 +268,10 @@ bot.on('ready', () => {
       } else if (message.includes("interestlist")) {
         if (message.includes("add")) {
           parseCoins(message).then(function(parsedCoins){
-          ((parsedCoins.length > 0) ? addInterest(message, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
-          }
+            ((parsedCoins.length > 0) ? addInterest(message, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
+          }).catch(function(err){
+            payload.reply(err);
+          });
         } else if (message.includes("remove")) {
           removeInterest(message, channel);
         } else if (message.includes("show") && message.includes("prices")) {
