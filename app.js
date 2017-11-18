@@ -285,7 +285,7 @@ bot.on('ready', () => {
             channel.send("made it");
             parseFloatComplex(message).then(function(num){
             setAlertThreshold(num).then(function(resolved){
-             payload.reply(saySuccessMessage(channel, "You'll be automagically updated on coins that reach " + num + "% increase/decrease in one hour from now on."));
+            payload.reply(saySuccessMessage("You'll be automagically updated on coins that reach " + num + "% increase/decrease in one hour from now on."));
            }).catch(function(err){
              payload.reply(err);
            });
