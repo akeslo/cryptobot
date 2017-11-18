@@ -260,7 +260,6 @@ bot.on('ready', () => {
         channel = payload.channel;
 
     if (message && message.includes("$" + bot_name.toLowerCase()) && author.username !== bot_name) {
-      channel.send(author.username);
       if (message.includes("help")) {
         //display the list of functions
         payload.reply(displayHelp());
