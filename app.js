@@ -259,7 +259,7 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
-    if (message && message.includes("!" + bot_name.toLowerCase()) && author.username !== bot_name) {
+    if (message && message.includes("$" + bot_name.toLowerCase()) && author.username !== bot_name) {
       if (message.includes("help")) {
         //display the list of functions
         payload.reply(displayHelp());
@@ -278,7 +278,8 @@ bot.on('ready', () => {
 
       /*  enable alerts disable alerts set (percent) alert threshold set alert channel show alerts enabled show alerts interval show alerts channel */
       } else if (message.includes("alert")) {
-        if (message.includes("enable") || message.includes("disable")) {
+        channel.send("made it");
+        if ((message.includes("enable") || message.includes("disable")) && ! message.includes("enabled")) {
           ((message.includes("enable")) ? enableAlerts(true) : enableAlerts(false));
           payload.reply(saySuccessMessage());
         } else if (message.includes("set") && message.includes("threshold")) {
@@ -474,7 +475,7 @@ bot.on('ready', () => {
     function displayHelp() {
       return `Here is what I can do:
 
-      All commands must begin with !cryptobot
+      All commands must begin with $cryptobot
 
       Price: Display current coin price
                 show price *coin*
