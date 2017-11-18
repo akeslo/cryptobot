@@ -268,11 +268,15 @@ bot.on('ready', () => {
       } else if (message.includes("interestlist")) {
         if (message.includes("add")) {
           parseCoins(message).then(function(parsedCoins){
-            ((parsedCoins.length > 0) ? addInterest(message, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
+            if (parsedCoins.length > 0) {
+              addInterest(message, channel)
+              ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '$cryptobot interestlist add BTC.'"));
+            } else {
+              payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again.")
+            }
           }).catch(function(err){
             payload.reply(err);
           });
-        ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '$cryptobot interestlist add BTC.'"));
         } else if (message.includes("remove")) {
           removeInterest(message, channel);
         } else if (message.includes("show") && message.includes("prices")) {
