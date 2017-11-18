@@ -6,7 +6,7 @@
   },
   "alerts": {
     "enabled": true,
-    "threshold": 3,
+    "threshold": 5,
     "interval": 600
   }
 }
