@@ -119,7 +119,7 @@ bot.on('ready', () => {
   setUpdateInterval(updateIntervalHours);
 
   function update(updateList, channel) {
-    console.log("update called");
+    console.log("update called " + channel);
     if (tickerData.length !== 0 && updateList.length !== 0) {
       for (var coin in updateList) {
         var updateMessage,
