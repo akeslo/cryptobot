@@ -271,6 +271,22 @@ bot.on('ready', () => {
             payload.reply("The current channel receiving the automatic updates and rapid price increase alerts is " + updateChannel + "." );
           }
 
+        } else if (message.includes("set")) {
+          if (message.includes("update") && message.includes("interval")) {
+            parseFloatComplex(message).then(function(num){
+              setUpdateInterval(num).then(function(resolved){
+                saySuccessMessage(channel, "You'll be automagically updated on your coins interests every " + num + " hours from now on.");
+              }).catch(function(err){
+                payload.reply(err);
+              });
+            }).catch(function(err){
+              payload.reply(err);
+            });
+          } else if (message.includes("update") && message.includes("channel")) {
+            setUpdateChannel(channel);
+            saySuccessMessage(channel, "I set the update channel to " + channel + ". That's where you'll get updated automatically from now on.");
+          }
+
         }
 
       } else if (message.includes("show") && (message.includes("price"))) {
