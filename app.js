@@ -282,10 +282,9 @@ bot.on('ready', () => {
           ((message.includes("enable")) ? enableAlerts(true) : enableAlerts(false));
           payload.reply(saySuccessMessage());
         } else if (message.includes("set") && message.includes("threshold")) {
-            channel.send("made it");
             parseFloatComplex(message).then(function(num){
             setAlertThreshold(num).then(function(resolved){
-            payload.reply(saySuccessMessage("You'll be automagically updated on coins that reach " + num + "% increase/decrease in one hour from now on."));
+            payload.reply(saySuccessMessage("You'll be automagically updated on coins that reach " + num + "% increase/decrease."));
            }).catch(function(err){
              payload.reply(err);
            });
@@ -296,7 +295,7 @@ bot.on('ready', () => {
           setUpdateChannel(channel.name);
           channel.send(saySuccessMessage("I set the update channel to " + channel.name + ". That's where you'll get updated automatically from now on."));
         } else if (message.includes("show") && message.includes("enabled")) {
-          ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease in over one hour." ) : payload.reply("It seems as though automatic updates are disabled." ));
+          ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease." ) : payload.reply("It seems as though automatic updates are disabled." ));
         } else if (message.includes("show") && message.includes("threshold")) {
           payload.reply("The current pump and dump threshold is set to " + alertThreshold + "% in one hour.");
         } else if (message.includes("show") && message.includes("channel")) {
@@ -346,6 +345,8 @@ bot.on('ready', () => {
           payload.reply(err);
         });
 
+      } else {
+        payload.reply(noUnderstand);
       }
 
 
@@ -476,18 +477,18 @@ bot.on('ready', () => {
     function displayHelp() {
       return `Here is what I can do:
 
-      All commands must begin with $cryptobot
+      *All commands must begin with $cryptobot*
 
-      Price: Display current coin price
+      **Price: Display current coin price**
                 show price *coin*
 
-      Interest List: A coin watch list
+      **Interest List: A coin watch list**
                 interestlist add *coin*
                 interestlist remove *coin*
                 interestlist show
                 interestlist show prices
 
-      Updates: Send periodic price updates to the channel.
+      **Updates: Send periodic price updates to the channel.**
                 enable updates
                 disable updates
                 set update interval *hours*
@@ -496,7 +497,7 @@ bot.on('ready', () => {
                 show updates interval
                 show updates channel
 
-      Alerts: Percent based threshold alerts
+      **Alerts: Percent based threshold alerts**
                 enable alerts
                 disable alerts
                 set alert threshold *percent*
