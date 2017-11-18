@@ -122,13 +122,14 @@ bot.on('ready', () => {
     console.log("Sending update to channel: " + channel);
     var liveChannel = bot.channels.find('name', channel);
     if (tickerData.length !== 0 && updateList.length !== 0) {
+      ((liveChannel) ? liveChannel.send("Price Update: \n") : console.log("Price Update: \n"));
       for (var coin in updateList) {
         var updateMessage,
             target = updateList[coin];
 
         selectCoinInfo(target).then(function(coinInfo){
           ((coinInfo && coinInfo.symbol) ? updateMessage = "*" + coinInfo.symbol.toUpperCase() + "*: " + coinInfo.price_btc + " BTC ($" + coinInfo.price_usd + ") | *" + coinInfo.percent_change_24h + "%* in 24 hours (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
-          ((liveChannel) ? liveChannel.send("Price Update!: \n" + updateMessage) : console.log(updateMessage));
+          ((liveChannel) ? liveChannel.send(updateMessage) : console.log(updateMessage));
         }).catch(function(err){
           ((liveChannel) ? liveChannel.send(err) : console.log(err));
         });
