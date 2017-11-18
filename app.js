@@ -119,7 +119,7 @@ bot.on('ready', () => {
 
   function updateTimed(updateList, channel) {
     ((channel.send) ? channel : channel = bot.channels.find('name', channel));
-    ((channel.send) ? channel.send("@everyone --- Price Update ---") : console.log(updateMessage));
+    ((channel.send) ? channel.send("**--- Price Update ---**") : console.log(updateMessage));
     update(updateList, channel)
   }
 
