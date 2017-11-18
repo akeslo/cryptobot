@@ -282,6 +282,7 @@ bot.on('ready', () => {
           ((message.includes("enable")) ? enableAlerts(true) : enableAlerts(false));
           payload.reply(saySuccessMessage());
         } else if (message.includes("set") && message.includes("threshold")) {
+            channel.send("made it");
             parseFloatComplex(message).then(function(num){
             setAlertThreshold(num).then(function(resolved){
              payload.reply(saySuccessMessage(channel, "You'll be automagically updated on coins that reach " + num + "% increase/decrease in one hour from now on."));
@@ -324,7 +325,7 @@ bot.on('ready', () => {
             setUpdateChannel(channel.name);
             channel.send(saySuccessMessage("I set the update channel to " + channel.name + ". That's where you'll get updated automatically from now on."));
           } else if (message.includes("interval")) {
-            parseFloatComplex(message).then(function(num){
+              parseFloatComplex(message).then(function(num){
               setUpdateInterval(num).then(function(resolved){
                 channel.send(saySuccessMessage("You'll be automagically updated on your coins interests every " + num + " hours from now on."));
               }).catch(function(err){
