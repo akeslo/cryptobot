@@ -118,7 +118,7 @@ bot.on('ready', () => {
   setUpdateInterval(updateInterval);
   if (alertsEnabled) {
     console.log("Alerts are enabled");
-    setInterval(alert(interestList), (tickerUpdateInterval + 30) * 1000);
+    setInterval(alert, (tickerUpdateInterval + 30) * 1000), interestList);
   }
 
   function updateTimed(updateList, channel) {
