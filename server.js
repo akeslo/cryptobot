@@ -9,6 +9,7 @@ const bot = require('./app');
 var http = require("https");
 setInterval(function() {
     https.get("https://discordcrypto.herokuapp.com/");
+    console.log("5 minute timeout trigger");
 }, 300000); // every 5 minutes (300000)
 
 app.use(bodyParser.urlencoded({extended: true}));
