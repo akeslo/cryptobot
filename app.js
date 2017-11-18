@@ -147,7 +147,7 @@ bot.on('ready', () => {
   }
 
   function alert(alertList) {
-    if (tickerData.length !== 0 && updateList.length !== 0) {
+    if (tickerData.length !== 0 && alertList.length !== 0) {
       for (var coin in alertList) {
         var alertMessage,
             target = alertList[coin];
