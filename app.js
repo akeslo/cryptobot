@@ -240,8 +240,6 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
-    console.log(channel);
-
     if (message && message.includes("!" + bot_name.toLowerCase()) && author.username !== bot_name) {
       if (message.includes("help")) {
         //display the list of functions
@@ -285,9 +283,8 @@ bot.on('ready', () => {
               payload.reply(err);
             });
           } else if (message.includes("channel")) {
-            channel.send("here");
-            setUpdateChannel(channel);
-            saySuccessMessage(channel, "I set the update channel to " + channel + ". That's where you'll get updated automatically from now on.");
+            setUpdateChannel(channel.name);
+            saySuccessMessage(channel.name, "I set the update channel to " + channel.name + ". That's where you'll get updated automatically from now on.");
           }
 
         }
