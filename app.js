@@ -333,8 +333,8 @@ bot.on('ready', () => {
             var num;
             ((/.\d+/.test(clean)) ? num = clean.match(/.\d+/) : num = clean.match(/\d+/)); //check for decimals representing hours, too
             resolve(parseFloat(num[0]));
-            console.log(num);
           }).catch(function(err){
+            console.log(err);
             reject(err);
           });
         } else {
