@@ -6,7 +6,7 @@ var port = process.env.PORT || 3030;
 
 const bot = require('./app');
 
-var http = require("https");
+var https = require("https");
 setInterval(function() {
     https.get("https://discordcrypto.herokuapp.com/");
     console.log("5 minute timeout trigger");
