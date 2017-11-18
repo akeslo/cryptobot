@@ -327,6 +327,7 @@ bot.on('ready', () => {
     }
 
     function parseFloatComplex(message) {
+      console.log(message);
       return new Promise(function(resolve, reject){
         if (/\d+/.test(message)) {
           minusBotReference(message).then(function(clean){
