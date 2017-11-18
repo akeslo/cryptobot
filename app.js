@@ -282,8 +282,8 @@ bot.on('ready', () => {
           payload.reply(saySuccessMessage());
         } else if (message.includes("set") && message.includes("threshold")) {
             parseFloatComplex(message).then(function(num){
-           setAlertThreshold(num).then(function(resolved){
-             saySuccessMessage(channel, "You'll be automagically updated on coins that reach " + num + "% increase/decrease in one hour from now on.");
+            setAlertThreshold(num).then(function(resolved){
+             payload.reply(saySuccessMessage(channel, "You'll be automagically updated on coins that reach " + num + "% increase/decrease in one hour from now on."));
            }).catch(function(err){
              payload.reply(err);
            });
@@ -490,7 +490,7 @@ bot.on('ready', () => {
       Alerts: Percent based threshold alerts
                 enable alerts
                 disable alerts
-                set (percent) alert threshold
+                set alert threshold *percent*
                 set alert channel
                 show alerts enabled
                 show alerts interval
