@@ -240,6 +240,8 @@ bot.on('ready', () => {
         author = payload.author,
         channel = payload.channel;
 
+    console.log(author);
+    
     if (message && message.includes("!" + bot_name.toLowerCase()) && author !== bot_name) {
       if (message.includes("help")) {
         //display the list of functions
