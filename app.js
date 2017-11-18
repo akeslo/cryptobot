@@ -252,9 +252,9 @@ bot.on('ready', () => {
         } else if (message.includes("remove")) {
           removeInterest(message, channel);
         } else if (message.includes("show") && message.includes("prices")) {
-          ((interestList.length > 0) ? update(interestList, channel) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot add BTC to the interest list.'"));
+          ((interestList.length > 0) ? update(interestList, channel) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot interestlist add BTC.'"));
         } else if (message.includes("show")) {
-          ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot add BTC to the interest list.'"));
+          ((interestList.length > 0) ? payload.reply(displayInterests(channel)) : payload.reply("It looks like your interest list is currently empty! *Add* to it by typing '!cryptobot interestlist add BTC.'"));
         }
 
       } else if (message.includes("show") && (message.includes("price"))) {
@@ -353,7 +353,7 @@ bot.on('ready', () => {
           ((interestList.indexOf(parsedCoins[coin]) > -1) ? payload.reply(parsedCoins[coin] + " is already on the interest list." ) : interestList.push(parsedCoins[coin]));
           if ((parseInt(coin) + 1) == parsedCoins.length) {
             //update the user on the last cycle of the loop
-            channel.send(saySuccessMessage("I made sure that the coins you mentioned are now the interest list. You can type '!cryptobot show me the interest list' to confirm."));
+            channel.send(saySuccessMessage("I made sure that the coins you mentioned are now the interest list. You can type '!cryptobot interestlist' to confirm."));
             //... and save the new interest list as 'interestlist.json'
             saveInterestList();
           }
