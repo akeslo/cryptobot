@@ -334,7 +334,6 @@ bot.on('ready', () => {
             ((/.\d+/.test(clean)) ? num = clean.match(/.\d+/) : num = clean.match(/\d+/)); //check for decimals representing hours, too
             resolve(parseFloat(num[0]));
           }).catch(function(err){
-            console.log(err);
             reject(err);
           });
         } else {
@@ -389,7 +388,7 @@ bot.on('ready', () => {
           ((interestList.indexOf(parsedCoins[coin]) > -1) ? payload.reply(parsedCoins[coin] + " is already on the interest list." ) : interestList.push(parsedCoins[coin]));
           if ((parseInt(coin) + 1) == parsedCoins.length) {
             //update the user on the last cycle of the loop
-            channel.send(saySuccessMessage("I made sure that the coins you mentioned are now the interest list. You can type '!cryptobot interestlist' to confirm."));
+            channel.send(saySuccessMessage("I made sure that the coins you mentioned are now the interest list. You can type '!cryptobot interestlist show' to confirm."));
             //... and save the new interest list as 'interestlist.json'
             saveInterestList();
           }
@@ -444,7 +443,7 @@ bot.on('ready', () => {
       Updates: Send periodic price updates to the channel.
                 enable updates
                 disable updates
-                set (hours) update interval
+                set update interval *hours*
                 set update channel
                 show updates enabled
                 show updates interval
