@@ -273,6 +273,7 @@ bot.on('ready', () => {
 
         } else if (message.includes("set")) {
           if (message.includes("interval")) {
+            channel.send("mae it");
             parseFloatComplex(message).then(function(num){
               setUpdateInterval(num).then(function(resolved){
                 saySuccessMessage(channel, "You'll be automagically updated on your coins interests every " + num + " hours from now on.");
