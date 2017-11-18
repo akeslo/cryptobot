@@ -294,11 +294,11 @@ bot.on('ready', () => {
         } else if (message.includes("set") && message.includes("channel")) {
 
         } else if (message.includes("show") && message.includes("enabled")) {
-
-        } else if (message.includes("show") && message.includes("interval")) {
-
+          ((alertsEnabled) ? payload.reply("Pump and dump alerts are indeed enabled! You'll be updated when a coin reaches " + alertThreshold + "% increase/decrease in over one hour." ) : payload.reply("It seems as though automatic updates are disabled." ));
+        } else if (message.includes("show") && message.includes("threshold")) {
+          payload.reply("The current pump and dump threshold is set to " + alertThreshold + "% in one hour.");
         } else if (message.includes("show") && message.includes("channel")) {
-
+          payload.reply("The current channel receiving the rapid price increase alerts and automatic updates is " + updateChannel + "." );
         }
 
 
@@ -500,7 +500,7 @@ bot.on('ready', () => {
                 set alert threshold *percent*
                 set alert channel
                 show alerts enabled
-                show alerts interval
+                show alerts threshold
                 show alerts channel
                 `;
     }
