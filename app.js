@@ -280,6 +280,7 @@ bot.on('ready', () => {
           } else if (message.includes("interval")) {
             parseFloatComplex(message).then(function(num){
               setUpdateInterval(num).then(function(resolved){
+                channel.send(num);
                 channel.send(saySuccessMessage("You'll be automagically updated on your coins interests every " + num + " hours from now on."));
               }).catch(function(err){
                 payload.reply(err);
