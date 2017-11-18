@@ -267,7 +267,8 @@ bot.on('ready', () => {
       /* interestlist add coin interestlist remove coin interestlist show interestlist show prices */
       } else if (message.includes("interestlist")) {
         if (message.includes("add")) {
-          addInterest(message, channel);
+          parseCoins(message).then(function(parsedCoins){
+          ((parsedCoins.length > 0) ? addInterest(message, channel) : payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."));
         } else if (message.includes("remove")) {
           removeInterest(message, channel);
         } else if (message.includes("show") && message.includes("prices")) {
@@ -431,7 +432,6 @@ bot.on('ready', () => {
     function addInterest(string, channel) {
       //parse text for all coin references
       parseCoins(string).then(function(parsedCoins){
-        if (parsedCoins.length < 0) { payload.reply("Sorry, I didn't recognize any of those coin symbols. I encourage you to try again."); }
         for (var coin in parsedCoins) {
           //add the parsed coins to the list (if it's not already there)
           ((interestList.indexOf(parsedCoins[coin]) > -1) ? payload.reply(parsedCoins[coin] + " is already on the interest list." ) : interestList.push(parsedCoins[coin]));
