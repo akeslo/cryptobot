@@ -115,7 +115,8 @@ bot.on('ready', () => {
 
   var interestList = require(interest_list);
 
-  setUpdateInterval(updateInterval);
+  var updateIntervalHours = (updateInterval / 60) / 60;
+  setUpdateInterval(updateIntervalHours);
 
   function update(updateList, channel) {
     console.log("update called");
