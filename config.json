@@ -2,7 +2,7 @@
   "updates": {
     "enabled": true,
     "interval": 1,
-    "channel": "general"
+    "channel": "alerts"
   },
   "alerts": {
     "enabled": true,
