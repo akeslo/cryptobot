@@ -120,7 +120,7 @@ bot.on('ready', () => {
 
   setUpdateInterval(updateInterval);
   setInterval(alert, (alertInterval) * 1000, interestList);
-  setInterval(dayAlert, (dayInterval) * * 60 * 60 * 1000, interestList);
+  setInterval(dayAlert, (dayInterval) * 60 * 60 * 1000, interestList);
 
   function updateTimed(updateList, channel) {
     console.log("Automatic Updates Are: " + automaticUpdatesEnabled)
