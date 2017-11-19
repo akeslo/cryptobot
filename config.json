@@ -7,12 +7,8 @@
   "alerts": {
     "enabled": true,
     "threshold": 5,
-<<<<<<< HEAD
     "dayThreshold": 8,
     "interval": 600,
     "dayInterval": 6
-=======
-    "interval": 1200000
->>>>>>> 2716fb38151865e79df6c1e75045f2402110c365
   }
 }
