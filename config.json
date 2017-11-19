@@ -7,6 +7,8 @@
   "alerts": {
     "enabled": true,
     "threshold": 5,
-    "interval": 600
+    "dayThreshold": 8,
+    "interval": 600,
+    "dayInterval": 6
   }
 }

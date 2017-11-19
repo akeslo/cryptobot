@@ -105,7 +105,9 @@ var automaticUpdatesEnabled = botConfig.updates.enabled,
     updateChannel = botConfig.updates.channel,
     alertsEnabled = botConfig.alerts.enabled,
     alertThreshold = botConfig.alerts.threshold,
+    dayThreshold = botConfig.alerts.dayThreshold,
     alertInterval = botConfig.alerts.interval,
+    dayInterval = botConfig.alerts.dayInterval,
     automaticUpdates,
     automaticAlerts;
 
@@ -118,6 +120,7 @@ bot.on('ready', () => {
 
   setUpdateInterval(updateInterval);
   setInterval(alert, (alertInterval) * 1000, interestList);
+  setInterval(dayAlert, (dayInterval) * * 60 * 60 * 1000, interestList);
 
   function updateTimed(updateList, channel) {
     console.log("Automatic Updates Are: " + automaticUpdatesEnabled)
@@ -159,6 +162,31 @@ bot.on('ready', () => {
           selectCoinInfo(target).then(function(coinInfo){
             if ((coinInfo.percent_change_1h > alertThreshold) || (coinInfo.percent_change_1h < alertThreshold * -1)) {
             ((coinInfo && coinInfo.symbol) ? alertMessage = "@everyone *ALERT*: It looks like " + coinInfo.symbol.toUpperCase() + " is making a large shift in price (" + coinInfo.percent_change_1h + "% last hour)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
+            channel.send(alertMessage );
+            }
+          }).catch(function(err){
+            ((channel) ? channel.send(err) : console.log(err));
+          });
+        }
+      } else {
+        //no data to send
+        channel.send("Uh oh! Looks like there's no data for me to send you... coinmarketcap.com might be down or I might be disconnected from their server.");
+      }
+    }
+  }
+
+  function dayAlert(alertList) {
+    console.log("Day Alerts Are: " + alertsEnabled)
+    if (alertsEnabled) {
+      var channel = bot.channels.find('name', updateChannel);
+      if (tickerData.length !== 0 && alertList.length !== 0) {
+        for (var coin in alertList) {
+          var alertMessage,
+              target = alertList[coin];
+
+          selectCoinInfo(target).then(function(coinInfo){
+            if ((coinInfo.percent_change_24h > dayThreshold) || (coinInfo.percent_change_24h < dayThreshold * -1)) {
+            ((coinInfo && coinInfo.symbol) ? alertMessage = "@everyone *ALERT*: It looks like " + coinInfo.symbol.toUpperCase() + " has made a large shift in price (" + coinInfo.percent_change_24h + "% last 24 hours)." : updateMessage = "Uh oh! Something went wrong with retrieving the data.");
             channel.send(alertMessage );
             }
           }).catch(function(err){
